@@ -1,5 +1,8 @@
+// See Demo of project here: https://youtu.be/TOCdedQDdGM
+
 #include <DHT.h> // include the library of DHT11
 #define Type DHT11 // define the connected analog
+
 
 //Pins
 int LightPin = A0;                         //Light sensor pin
