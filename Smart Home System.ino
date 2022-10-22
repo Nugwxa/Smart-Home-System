@@ -29,6 +29,7 @@ float tempC;                               // Temperature value recieved from th
 int userButtonState = 0;                   // variable for reading the buttons status
 int disableBuzzerButtonState = 0;          // variable for reading the buttons status
 int SmokeValue;                            //variable for reading the smoke value
+int SmokeThreshold = 225;                  // Smoke value that must be exceeded for a certain reaction
 
 bool UserAtHome = true;                    // Determines if user is at home or not
 bool BuzzerOn = false;                     // Turns buzzer on or off
@@ -55,8 +56,8 @@ void loop() {
 
   userButtonState = digitalRead(UserButtonPin);
 
-  // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
-  if (userButtonState == HIGH && UserAtHome == false) {
+  
+  if (userButtonState == HIGH && UserAtHome == false) { // If the user presses the home button and UserAtHome = false, set UserAt Home to true and turn on the lights.
     
     digitalWrite(RedLEDPin, HIGH);
     digitalWrite(BlueLEDPin, HIGH);
@@ -64,7 +65,7 @@ void loop() {
     Serial.println("User is at home");
     delay(500);
     UserAtHome = true;
-  }else if (userButtonState == HIGH && UserAtHome == true) {
+  }else if (userButtonState == HIGH && UserAtHome == true) { // If the user presses the home button and UserAtHome = true, set UserAt Home to false and turn off the lights.
     
     digitalWrite(RedLEDPin, LOW);
     digitalWrite(BlueLEDPin, LOW);
@@ -126,7 +127,7 @@ if (UserAtHome == false && LightValue > 100){                //If user is not at
   //Motion Sensor
   MotionVal = digitalRead(MotionPin);  // read input value
   
-  // If movement has been detected and the user is not at home, trigger the alarm and notify them.
+  // If movement has been detected and the user is not at home, trigger the alarm and notify user.
   if (UserAtHome == false && MotionVal == HIGH)  
   {            
     //digitalWrite(RedLEDPin, HIGH);  // turn Red LED ON
@@ -154,12 +155,9 @@ if (UserAtHome == false && LightValue > 100){                //If user is not at
   SmokeValue = analogRead(smokePin); //Read value from smoke pin
   Serial.println("Smoke value: ");
   Serial.println(SmokeValue);
-  if(SmokeValue>225){ // If smoke value is greater than "225", Trigger buzzer and notify user
+  if(SmokeValue>SmokeThreshold){ // If the detected smoke value is greater than the set threshold(225), Trigger buzzer and notify user
   BuzzerOn = true;
   //Notify user "Smoke Detected";
   }
   
 }
-
-
-  //
