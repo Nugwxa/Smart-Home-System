@@ -87,14 +87,14 @@ void loop() {
   
   
   //Buzzer state
-  if (BuzzerOn == true){ //if buzzer is triggered play sound
+  if (BuzzerOn == true){ //if buzzer is triggered play sound and turn on yellow LED
     tone(2,600); 
     delay(500);
     noTone(2);
     delay(1);
     digitalWrite(YellowLEDPin, HIGH);
     digitalWrite(GreenLEDPin, LOW);
-    } else if(BuzzerOn == false){ //stop playing sound
+    } else if(BuzzerOn == false){ //stop playing sound and turn off yellow LED
       noTone;
       digitalWrite(YellowLEDPin, LOW);
     digitalWrite(GreenLEDPin, HIGH);
