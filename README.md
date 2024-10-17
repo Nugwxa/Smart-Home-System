@@ -4,6 +4,7 @@ This is a smart home system that uses various sensors to monitor and control dif
 
 ## Demo
 See a demo of this project on YouTube.
+![IOT Coursework](https://github.com/user-attachments/assets/1969e769-2eb5-4d4e-bc0f-d3de1a3eaa54)
 
 ## Hardware
 - Arduino UNO board
